@@ -10,11 +10,8 @@ class HHParser:
         params = {
             'text': search_value,
             'area': 40,
-            # 'page': counter
         }
         response = requests.get(url='https://api.hh.ru/vacancies', params=params)
-        # print(len(response.json().get('items')))
-        # print(json.dumps(response.json(), indent=3, ensure_ascii=False))
         for counter in range(response.json().get('pages')):
             params = {
                 'text': search_value,
@@ -24,9 +21,6 @@ class HHParser:
             response = requests.get(url='https://api.hh.ru/vacancies', params=params)
             for vac in response.json().get('items'):
                 list_of_vac.append(vac)
-
-        # print(json.dumps(list_of_vac[0], indent=3, ensure_ascii=False))
-        # print (list_of_vac[0]['url'])
         return list_of_vac
 
     def cleanText(self, text):
